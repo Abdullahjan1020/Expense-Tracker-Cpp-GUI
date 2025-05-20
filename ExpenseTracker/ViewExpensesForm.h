@@ -92,7 +92,7 @@ private:
 	void AddButton_Click(Object^ sender, EventArgs^ e) {
 		String^ category = "";
 		String^ amountStr = "";
-		String^ dateStr = "";
+		DateTime selectedDate;
 
 		InputDialog^ catDialog = gcnew InputDialog("Enter category:", "Add Expense");
 		if (catDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
@@ -102,22 +102,40 @@ private:
 		if (amtDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 			amountStr = amtDialog->InputText;
 
-		InputDialog^ dateDialog = gcnew InputDialog("Enter date (YYYY-MM-DD):", "Add Expense");
-		if (dateDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
-			dateStr = dateDialog->InputText;
+		//Date Picker
+		Form^ dateForm = gcnew Form();
+		dateForm->Text = "Select Date";
+		dateForm->Size = System::Drawing::Size(250, 150);
 
+		DateTimePicker^ datePicker = gcnew DateTimePicker();
+		datePicker->Format = DateTimePickerFormat::Short;
+		datePicker->Location = System::Drawing::Point(30, 20);
+		datePicker->Width = 150;
 
-		if(!String::IsNullOrEmpty(category)&&!String::IsNullOrEmpty(amountStr)&&!String::IsNullOrEmpty(dateStr)) {
+		Button^ okButton = gcnew Button();
+		okButton->Text = "OK";
+		okButton->DialogResult = System::Windows::Forms::DialogResult::OK;
+		okButton->Location = System::Drawing::Point(80, 60);
+		dateForm->AcceptButton = okButton;
+
+		dateForm->Controls->Add(datePicker);
+		dateForm->Controls->Add(okButton);
+
+		if (dateForm->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			selectedDate = datePicker->Value;
+		}
+		else {
+			return;
+		}
+		if (!String::IsNullOrEmpty(category) && !String::IsNullOrEmpty(amountStr)) {
 			try {
 				double amount = Convert::ToDouble(amountStr);
-				DateTime date = DateTime::Parse(dateStr);
-				Expense^ newExpense = gcnew Expense(category, amount, date);
-			
+				Expense^ newExpense = gcnew Expense(category, amount, selectedDate);
 				expenseList->Add(newExpense);
 				expenseGrid->Rows->Add(newExpense->Category, newExpense->Amount.ToString("F2"), newExpense->Date.ToShortDateString());
 			}
 			catch (FormatException^ ex) {
-				MessageBox::Show("Invalid input format. Please try again.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show("Invalid amount format. Please enter a valid number.", "Input Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 	}
