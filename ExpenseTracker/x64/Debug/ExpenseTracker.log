@@ -1,0 +1,12 @@
+﻿  DashboardForm.cpp
+C:\Users\bolan\source\repos\ExpenseTracker\ExpenseTracker\ViewExpensesForm.h(119,28): warning C4101: 'ex': unreferenced local variable
+  (compiling source file 'DashboardForm.cpp')
+  
+  LoginForm.cpp
+C:\Users\bolan\source\repos\ExpenseTracker\ExpenseTracker\ViewExpensesForm.h(119,28): warning C4101: 'ex': unreferenced local variable
+  (compiling source file 'LoginForm.cpp')
+  
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+  DashboardForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  ExpenseTracker.vcxproj -> C:\Users\bolan\source\repos\ExpenseTracker\x64\Debug\ExpenseTracker.exe

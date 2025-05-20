@@ -1,0 +1,4 @@
+C:\Users\bolan\source\repos\ExpenseTracker\ExpenseTracker\x64\Debug\ExpenseTracker.vcxproj.AssemblyReference.cache
+C:\Users\bolan\source\repos\ExpenseTracker\ExpenseTracker\x64\Debug\ExpenseTracker.DashboardForm.resources
+C:\Users\bolan\source\repos\ExpenseTracker\ExpenseTracker\x64\Debug\ExpenseTracker.LoginForm.resources
+C:\Users\bolan\source\repos\ExpenseTracker\ExpenseTracker\x64\Debug\ExpenseTracker.vcxproj.GenerateResource.cache
